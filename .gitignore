@@ -2,4 +2,6 @@
 venv/
 *.pyc
 *.pyo
-__pycache__/
+app/__pycache__/
+data/
+chroma_db/
