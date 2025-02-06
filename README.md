@@ -121,7 +121,4 @@ Logs are saved in the console output and include request processing times, error
 - Implement authentication & role-based access control
 - Expand supported document formats
 - Add GPU acceleration for faster inference
-
-## License
-MIT License. See `LICENSE` for details.
-
+- Basic evaluation metrics for answer quality
