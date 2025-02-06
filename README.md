@@ -27,8 +27,8 @@ Ensure you have the following installed:
 ### Setup
 1. Clone the repository:
    ```sh
-   git clone <repo_url>
-   cd <project_folder>
+   git clone https://github.com/verlineguo/rag-system.git
+   cd rag-system
    ```
 2. Create and activate a virtual environment:
    ```sh
