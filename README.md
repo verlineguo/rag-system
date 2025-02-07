@@ -119,7 +119,7 @@ GET /monitoring
    ```
 
 ## Model Setup in docker
-### installing the ollama model
+
 When running the application within a Docker container, ensure that the Ollama model llama3.2 is installed. Follow the steps below to set it up:
 
 ### Verify the Ollama Model in Docker
