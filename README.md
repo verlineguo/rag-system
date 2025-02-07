@@ -125,27 +125,30 @@ When running the application within a Docker container, ensure that the Ollama m
 ### Verify the Ollama Model in Docker
 
 Once your Docker container is running, check that the model llama3.2 is available in the container by running:
-'''
+```
 docker exec -it <container_id> bash
 ollama list
-'''
+```
 
 If llama3.2 is listed, you're good to go!
 ### Set the Model in .env File
 In your project's root directory, create or update the .env file to specify the model to use for querying:
-'''
+```
 LLM_MODEL=llama3.2
-'''
+```
+
 ### Install the Model if Not Already Available
 If llama3.2 is not installed, you can install it by running:
-'''
+```
 ollama pull llama3.2
-'''
+```
+
 ### Confirm the Model Installation
 After installation, verify that the model is correctly installed by running:
-'''
+```
 ollama list
-'''
+```
+
 ## Logging
 Logs are saved in the console output and include request processing times, errors, and token usage.
 
