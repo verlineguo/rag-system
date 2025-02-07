@@ -1,6 +1,16 @@
-version: "3.8"
-
 services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+      - CHROMA_DB_HOST=http://chroma:8000
+      - EMBEDDING_MODEL=llama3.2
+    depends_on:
+      - ollama
+      - chroma
+
   ollama:
     image: ollama/ollama
     ports:
@@ -9,32 +19,8 @@ services:
       - ./ollama_data:/root/.ollama
 
   chroma:
-    image: chromadb/chroma
+    image: ghcr.io/chroma-core/chroma:latest
     ports:
-      - "8000:8000"
+      - "8001:8000"
     volumes:
-      - ./chroma_data:/chroma
-
-  api:
-    build: .
-    ports:
-      - "8080:8080"
-    depends_on:
-      - ollama
-      - chroma
-    environment:
-      LLM_MODEL: mistral
-      CHROMA_PATH: /chroma
-      COLLECTION_NAME: local-rag
-    networks:
-      - rag_network
-
-networks:
-  rag_network:
-    driver: bridge
-
-volumes:
-  ollama_data:
-    driver: local
-  chroma_data:
-    driver: local
+      - ./chroma_db:/chroma/chroma

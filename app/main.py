@@ -70,7 +70,7 @@ async def route_embed(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail="File type not allowed. Only PDF and Markdown are supported.")
 
     try:
-        embedded = await embed(file)
+        embedded = embed(file)
         if embedded:
             return {"message": "File embedded successfully"}
         raise HTTPException(status_code=500, detail="File embedding failed")
