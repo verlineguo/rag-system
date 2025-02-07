@@ -5,3 +5,4 @@ venv/
 app/__pycache__/
 data/
 chroma_db/
+ollama_data/

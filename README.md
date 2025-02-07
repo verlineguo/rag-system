@@ -21,7 +21,7 @@ This project implements a **Retrieval-Augmented Generation (RAG) System API** us
 ## Installation
 ### Prerequisites
 Ensure you have the following installed:
-- Python 3.8+
+- Python 3.12+
 - Docker (optional, for containerized deployment)
 
 ### Setup
