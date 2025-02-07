@@ -41,11 +41,15 @@ Ensure you have the following installed:
    ```
 4. Create an `.env` file and configure the environment variables:
    ```env
-   TEMP_FOLDER=./_temp
-   CHROMA_PATH=./chroma_db
-   COLLECTION_NAME=local-rag
-   TEXT_EMBEDDING_MODEL=llama3.2
-   LLM_MODEL=llama3.2
+   TEMP_FOLDER = './data'
+   CHROMA_PATH = 'chroma_db'
+   COLLECTION_NAME = 'local-rag'
+   LLM_MODEL = 'llama3.2'
+   CHUNK_SIZE=1024
+   CHUNK_OVERLAP=100
+   TEXT_EMBEDDING_MODEL = 'llama3.2'
+   OLLAMA_HOST=localhost
+   OLLAMA_PORT=11434
    ```
 5. Run the application:
    ```sh
@@ -105,7 +109,7 @@ GET /monitoring
 ```
 
 ## Deployment with Docker
-1. Build the Docker image:
+### Build the Docker image:
    ```sh
    docker build -t rag-system .
    ```
@@ -114,6 +118,34 @@ GET /monitoring
    docker-compose up -d
    ```
 
+## Model Setup in docker
+### installing the ollama model
+When running the application within a Docker container, ensure that the Ollama model llama3.2 is installed. Follow the steps below to set it up:
+
+### Verify the Ollama Model in Docker
+
+Once your Docker container is running, check that the model llama3.2 is available in the container by running:
+'''
+docker exec -it <container_id> bash
+ollama list
+'''
+
+If llama3.2 is listed, you're good to go!
+### Set the Model in .env File
+In your project's root directory, create or update the .env file to specify the model to use for querying:
+'''
+LLM_MODEL=llama3.2
+'''
+### Install the Model if Not Already Available
+If llama3.2 is not installed, you can install it by running:
+'''
+ollama pull llama3.2
+'''
+### Confirm the Model Installation
+After installation, verify that the model is correctly installed by running:
+'''
+ollama list
+'''
 ## Logging
 Logs are saved in the console output and include request processing times, errors, and token usage.
 
