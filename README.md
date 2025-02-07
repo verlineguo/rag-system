@@ -109,7 +109,7 @@ GET /monitoring
 ```
 
 ## Deployment with Docker
-### Build the Docker image:
+1. Build the Docker image:
    ```sh
    docker build -t rag-system .
    ```
@@ -148,6 +148,7 @@ After installation, verify that the model is correctly installed by running:
 ```
 ollama list
 ```
+
 
 ## Logging
 Logs are saved in the console output and include request processing times, errors, and token usage.
