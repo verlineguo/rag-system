@@ -1,0 +1,39 @@
+
+services:
+  fastapi:
+    build: .
+    container_name: fastapi_app
+    ports:
+      - "8000:8000"
+    environment:
+      - TEMP_FOLDER=/app/data
+      - CHUNK_SIZE=${CHUNK_SIZE}
+      - CHUNK_OVERLAP=${CHUNK_OVERLAP}
+      - LLM_MODEL=${LLM_MODEL}
+      - OLLAMA_HOST=ollama  # Use service name directly
+      - OLLAMA_PORT=11434   # Use the port directly
+    volumes:
+      - ./data:/app/data  # Map data folder for uploaded files
+    depends_on:
+      - chromadb
+      - ollama
+
+  chromadb:
+    image: ghcr.io/chroma-core/chroma:latest
+    container_name: chromadb
+    ports:
+      - "8001:8000"
+    volumes:
+      - chroma_db:/chroma/chroma_db  # Use named volume
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama  # Volume for Ollama
+
+volumes:
+  ollama_data:
+  chroma_db:  # Define named volume for Chroma
